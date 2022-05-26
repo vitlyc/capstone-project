@@ -13,11 +13,11 @@ import {
   getFirestore,
   doc,
   getDoc,
-  getDocs,
   setDoc,
   collection,
   writeBatch,
   query,
+  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -43,9 +43,9 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-  const batch = writeBatch(db);
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd, field) => {
   const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
 
   objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
@@ -61,13 +61,7 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocumentFromAuth = async (
@@ -115,12 +109,3 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDW0AHkv-vCttuCpMevRTYBR4y_-R_GrdI",
-//   authDomain: "crwn-clothing-db-23d28.firebaseapp.com",
-//   projectId: "crwn-clothing-db-23d28",
-//   storageBucket: "crwn-clothing-db-23d28.appspot.com",
-//   messagingSenderId: "962639336875",
-//   appId: "1:962639336875:web:42525b5c864f8a9d2baeee",
-// };

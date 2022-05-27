@@ -109,3 +109,12 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDW0AHkv-vCttuCpMevRTYBR4y_-R_GrdI",
+//   authDomain: "crwn-clothing-db-23d28.firebaseapp.com",
+//   projectId: "crwn-clothing-db-23d28",
+//   storageBucket: "crwn-clothing-db-23d28.appspot.com",
+//   messagingSenderId: "962639336875",
+//   appId: "1:962639336875:web:42525b5c864f8a9d2baeee",
+// };

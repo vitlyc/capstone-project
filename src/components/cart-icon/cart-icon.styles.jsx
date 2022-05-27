@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CartIconContainer = styled.div`
   width: 45px;
@@ -12,17 +12,6 @@ export const CartIconContainer = styled.div`
   svg {
     width: 24px;
     height: 24px;
-  }
-  body::-webkit-scrollbar {
-    width: 12px; /* ширина scrollbar */
-  }
-  body::-webkit-scrollbar-track {
-    background: orange; /* цвет дорожки */
-  }
-  body::-webkit-scrollbar-thumb {
-    background-color: blue; /* цвет плашки */
-    border-radius: 20px; /* закругления плашки */
-    border: 3px solid orange; /* padding вокруг плашки */
   }
 `;
 
